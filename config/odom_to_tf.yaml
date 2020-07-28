@@ -1,0 +1,4 @@
+odom_to_tf_node:
+    ros__parameters:
+        gazebo_entity: "marta"
+        body_tf_name: "odom"
