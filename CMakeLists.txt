@@ -21,10 +21,10 @@ find_package(rclcpp REQUIRED)
 find_package(nav_msgs REQUIRED)
 find_package(tf2_msgs REQUIRED)
 
-add_executable(odom_to_tf src/odom_to_tf.cpp)
-ament_target_dependencies(odom_to_tf rclcpp nav_msgs tf2_msgs)
+add_executable(odom_to_tf_node src/odom_to_tf.cpp)
+ament_target_dependencies(odom_to_tf_node rclcpp nav_msgs tf2_msgs)
 
-install(TARGETS odom_to_tf
+install(TARGETS odom_to_tf_node
   DESTINATION lib/${PROJECT_NAME})
 
 if(BUILD_TESTING)
