@@ -71,3 +71,5 @@ This node contains all the logic.
 Please report bugs and request features using the github issue tracker.
 
 [ROS2]: http://www.ros.org
+[tf2_msgs/TFMessage]: http://docs.ros.org/melodic/api/tf2_msgs/html/msg/TFMessage.html
+[nav_msg/Odometery]: http://docs.ros.org/melodic/api/nav_msgs/html/msg/Odometry.html
