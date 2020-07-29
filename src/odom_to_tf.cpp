@@ -23,6 +23,7 @@ class OdomToTfNode : public rclcpp::Node
       this->get_parameter("gazebo_entity", gazebo_entity);
       this->get_parameter("body_tf_name", body_tf_name_);
 
+      // The subscription requires sensor data quality of service. Otherwise the messages are not received.
       subscription_ = this->create_subscription<nav_msgs::msg::Odometry>(
         "/" + gazebo_entity + "/odom", rclcpp::SensorDataQoS(), std::bind(&OdomToTfNode::topic_callback, this, _1));
       publisher_ = this->create_publisher<tf2_msgs::msg::TFMessage>("/tf", tf2_ros::DynamicBroadcasterQoS());
