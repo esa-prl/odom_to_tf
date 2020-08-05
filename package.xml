@@ -5,7 +5,7 @@
   <version>0.1.0</version>
   <description>Converts an Odometry message to a TF message</description>
   <maintainer email="tim.wiese@esa.int">Tim Wiese</maintainer>
-  <license>TODO: License declaration</license>
+  <license>GPLv3</license>
 
   <depend>rclcpp</depend>
   <depend>nav_msgs</depend>
