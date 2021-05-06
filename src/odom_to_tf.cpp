@@ -1,6 +1,7 @@
 #include <functional>
 #include <memory>
 #include <string>
+#include <iostream>
 
 #include "rclcpp/rclcpp.hpp"
 #include "nav_msgs/msg/odometry.hpp"
@@ -16,12 +17,10 @@ class OdomToTfNode : public rclcpp::Node
     : Node("odom_to_tf")
     {
       this->declare_parameter<std::string>("gazebo_entity", "marta");
-      this->declare_parameter<std::string>("body_tf_name", "odom");
 
       std::string gazebo_entity;
 
       this->get_parameter("gazebo_entity", gazebo_entity);
-      this->get_parameter("body_tf_name", body_tf_name_);
 
       // The subscription requires sensor data quality of service. Otherwise the messages are not received.
       subscription_ = this->create_subscription<nav_msgs::msg::Odometry>(
@@ -30,8 +29,6 @@ class OdomToTfNode : public rclcpp::Node
     }
 
   private:
-    std::string body_tf_name_;
-
     rclcpp::Subscription<nav_msgs::msg::Odometry>::SharedPtr subscription_;
     rclcpp::Publisher<tf2_msgs::msg::TFMessage>::SharedPtr publisher_;
 
@@ -40,7 +37,8 @@ class OdomToTfNode : public rclcpp::Node
       geometry_msgs::msg::TransformStamped transform_msg;
 
       transform_msg.header = msg->header;
-      transform_msg.child_frame_id = body_tf_name_;
+      transform_msg.header.frame_id = "odom";
+      transform_msg.child_frame_id = "base_link";
 
       geometry_msgs::msg::Vector3 vector;
       vector.x = msg->pose.pose.position.x;
